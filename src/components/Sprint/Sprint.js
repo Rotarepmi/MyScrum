@@ -40,7 +40,6 @@ class Sprint extends Component {
               text: "Ukończ"
             }
           };
-          break;
         case 1:
           return {
             sprintState: 2,
@@ -50,7 +49,7 @@ class Sprint extends Component {
             },
             sprintDate: new Date()
           };
-          break;
+        default: return {};
       }
     });
   }
