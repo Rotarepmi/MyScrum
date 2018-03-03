@@ -1,0 +1,38 @@
+.Sprint-wrapper {
+  padding: 20px;
+}
+
+.Sprint-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+
+.Sprint-functions-pane {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Sprint-time {
+  margin-right: 10px;
+}
+
+.Sprint-state-btn {
+
+}
+
+.Sprint-board {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.Sprint-column {
+  flex: 1;
+  border-right: 3px dashed #dedede;
+  min-height: 300px;
+}
