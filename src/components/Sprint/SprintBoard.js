@@ -1,23 +1,47 @@
 import React, { Component } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
+
 import SprintColumn from './SprintColumn';
 
 class SprintBoard extends Component {
+  onDragStart = () => {
+    /*...*/
+  };
+  onDragUpdate = () => {
+    /*...*/
+  }
+  onDragEnd = () => {
+    // the only one that is required
+  };
+
   render() {
     return (
-      <div className="Sprint-board">
-        <SprintColumn
-          columnName="Do zrobienia"
-          columnContent="qagbhraehfbdsfg"
-        />
-        <SprintColumn
-          columnName="W toku"
-          columnContent="qagbhraehfbdsfg"
-        />
-        <SprintColumn
-          columnName="Gotowe"
-          columnContent="qagbhraehfbdsfg"
-        />
-      </div>
+      <DragDropContext
+        onDragStart={this.onDragStart}
+        onDragUpdate={this.onDragUpdate}
+        onDragEnd={this.onDragEnd}
+      >
+        <div className="Sprint-board">
+          <SprintColumn
+            droppableId="col1"
+            columnName="Do zrobienia"
+            epicId="epic1"
+            epicContent="qagbhraehfbdsfg"
+          />
+          <SprintColumn
+            droppableId="col2"
+            columnName="W toku"
+            epicId="epic2"
+            epicContent="fggd"
+          />
+          <SprintColumn
+            droppableId="col3"
+            columnName="Gotowe"
+            epicId="epic3"
+            epicContent="ehfbdsfg"
+          />
+        </div>
+    </DragDropContext>
     );
   }
 }
