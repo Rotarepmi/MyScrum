@@ -25,19 +25,15 @@ class SprintBoard extends Component {
           <SprintColumn
             droppableId="col1"
             columnName="Do zrobienia"
-            addEpicBtn="true"
+            addTaskBtn="true"
           />
           <SprintColumn
             droppableId="col2"
             columnName="W toku"
-            epicId="epic2"
-            epicContent="fggd"
           />
           <SprintColumn
             droppableId="col3"
             columnName="Gotowe"
-            epicId="epic3"
-            epicContent="ehfbdsfg"
           />
         </div>
     </DragDropContext>

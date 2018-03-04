@@ -44,3 +44,17 @@
 .Sprint-column-droppable {
   min-height: 300px;
 }
+
+.Sprint-draggable-component {
+  border: solid 2px #b9fffe;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.Sprint-draggable-input {
+  width: 100%;
+  min-height: 50px;
+  border: none;
+}

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
-class AddEpicBtn extends Component {
+class AddTaskBtn extends Component {
   render() {
     return (
       <button
         className="light-btn"
-        onClick={this.props.addEpic}
+        onClick={this.props.addTask}
       >
-        Dodaj epikę
+        Dodaj zadanie
       </button>
     );
   }
 }
 
-export default AddEpicBtn;
+export default AddTaskBtn;

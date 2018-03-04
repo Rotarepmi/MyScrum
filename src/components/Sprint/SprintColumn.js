@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
-import SprintDraggableEpic from './SprintDraggableEpic';
-import AddEpicBtn from './AddEpicBtn';
+import SprintDraggableTask from './SprintDraggableTask';
+import AddTaskBtn from './AddTaskBtn';
 
 class SprintColumn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      epics: ["test1", "test2"]
+      tasks: []
     }
   }
 
-  addEpicBtn = () => {
-    if(this.props.addEpicBtn) {
-      return <AddEpicBtn addEpic={this.addEpic}/>;
+  addTaskBtn = () => {
+    if(this.props.addTaskBtn) {
+      return <AddTaskBtn addTask={this.addTask}/>;
     }
   }
 
-  addEpic = () => {
-    let epics = [];
-    this.state.epics.map(epic => epics.push(epic));
-    epics.push('test lol');
-    this.setState({epics});
+  addTask = () => {
+    let tasks = [];
+    this.state.tasks.map(task => tasks.push(task));
+    tasks.push('test lol');
+    this.setState({tasks});
   }
 
   render() {
@@ -40,11 +40,11 @@ class SprintColumn extends Component {
               {...provided.droppableProps}
             >
 
-            {this.state.epics.map((epic, index) =>
-              <SprintDraggableEpic
+            {this.state.tasks.map((task, index) =>
+              <SprintDraggableTask
                 key={index}
-                epicId={index}
-                epicContent={epic}
+                taskId={index}
+                taskContent={task}
               />
             )}
 
@@ -52,7 +52,7 @@ class SprintColumn extends Component {
           )}
         </Droppable>
 
-        {this.addEpicBtn()}
+        {this.addTaskBtn()}
       </div>
     );
   }

@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 
-class SprintDraggableEpic extends Component {
+class SprintDraggableTask extends Component {
   render() {
     return (
-      <Draggable draggableId={this.props.epicId}>
+      <Draggable draggableId={this.props.taskId}>
         {(provided, snapshot) => (
           <div>
             <div
+              className="Sprint-draggable-component"
               ref={provided.innerRef}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
             >
-              {this.props.epicContent}
+              <input
+                className="Sprint-draggable-input"
+                type="text"
+                defaultValue={this.props.taskContent}
+              />
             </div>
           </div>
         )}
@@ -21,4 +26,4 @@ class SprintDraggableEpic extends Component {
   }
 }
 
-export default SprintDraggableEpic;
+export default SprintDraggableTask;
