@@ -36,3 +36,11 @@
   border-right: 3px dashed #dedede;
   min-height: 300px;
 }
+
+.Sprint-column:nth-last-child(1) {
+  border: none;
+}
+
+.Sprint-column-droppable {
+  min-height: 300px;
+}
