@@ -4,24 +4,10 @@ import SprintDraggableTask from './SprintDraggableTask';
 import AddTaskBtn from './AddTaskBtn';
 
 class SprintColumn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasks: []
-    }
-  }
-
   addTaskBtn = () => {
     if(this.props.addTaskBtn) {
-      return <AddTaskBtn addTask={this.addTask}/>;
+      return <AddTaskBtn addTask={this.props.addTask}/>;
     }
-  }
-
-  addTask = () => {
-    let tasks = [];
-    this.state.tasks.map(task => tasks.push(task));
-    tasks.push('test lol');
-    this.setState({tasks});
   }
 
   render() {
@@ -40,11 +26,11 @@ class SprintColumn extends Component {
               {...provided.droppableProps}
             >
 
-            {this.state.tasks.map((task, index) =>
+            {this.props.tasks.map((task, index) =>
               <SprintDraggableTask
                 key={index}
-                taskId={index}
-                taskContent={task}
+                taskId={task.taskId}
+                taskContent={task.taskContent}
               />
             )}
 
