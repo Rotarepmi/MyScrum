@@ -17,6 +17,7 @@ class Sprint extends Component {
     }
   }
 
+  // this will be replaced by db request
   componentWillMount() {
     this.setState({
       sprintName: "Pierwszy sprint",
