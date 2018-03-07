@@ -34,7 +34,8 @@ class Sprint extends Component {
     });
   }
 
-  changeState = () => {
+  // change sprint state on button click
+  changeStateHandler = () => {
     this.setState(prevState => {
       switch(prevState.sprintState) {
         case 0:
@@ -59,6 +60,7 @@ class Sprint extends Component {
     });
   }
 
+  // add new todo task
   addTaskHandler = () => {
     let tasksToDo = [];
     this.state.todo.map(task => tasksToDo.push(task));
@@ -74,6 +76,7 @@ class Sprint extends Component {
     /*...*/
   };
 
+  // mandatory function, change place of task
   onDragEnd = (result) => {
     const src = result.source.droppableId,
           dst = result.destination.droppableId;
@@ -94,34 +97,7 @@ class Sprint extends Component {
     this.setState({
       [src]: newSrcTasks,
       [dst]: newDstTasks
-    })
-
-    console.log(this.state);
-
-    /*
-
-    switch(result.source.droppableId) {
-      case 'col1':
-        let currToDo = prevToDo.filter(task => task.taskId !== result.draggableId);
-
-        switch(result.destination.droppableId) {
-          case 'col1':
-            currToDo.splice(result.destination.index, 0, prevToDo.find(task => task.taskId === result.draggableId));
-            this.setState({todo: currToDo});
-            break;
-          case 'col2':
-            let currOnGo = prevOnGo;
-            currOnGo.splice(result.destination.index, 0, prevToDo.find(task => task.taskId === result.draggableId));
-            this.setState({ongo: currOnGo});
-            break;
-          default: return;
-        }
-        break;
-      default: return;
-    }
-    */
-
-    console.log(result);
+    });
   };
 
   render() {
