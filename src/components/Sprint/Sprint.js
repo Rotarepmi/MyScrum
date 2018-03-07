@@ -15,11 +15,9 @@ class Sprint extends Component {
         text: null
       },
       sprintDate: null,
-      tasks: {
-        todo: [{taskId: 0.15154154, taskContent: 'aaaaa'}],
-        ongo: [{taskId: 0.124124, taskContent: 'bbbbb'}],
-        done: [{taskId: 0.12411, taskContent: 'ccccc'}]
-      }
+      todo: [{taskId: 0.15154154, taskContent: 'aaaaa'}],
+      ongo: [{taskId: 0.124124, taskContent: 'bbbbb'}],
+      done: [{taskId: 0.12411, taskContent: 'ccccc'}]
     }
   }
 
@@ -63,15 +61,9 @@ class Sprint extends Component {
 
   addTaskHandler = () => {
     let tasksToDo = [];
-    const ongo = this.state.tasks.ongo;
-    const done = this.state.tasks.done;
-    this.state.tasks.todo.map(task => tasksToDo.push(task));
-    tasksToDo.push({taskId: new Date(), taskContent: 'test'});
-    this.setState({tasks: {
-      todo: tasksToDo,
-      ongo: ongo,
-      done: done
-    }});
+    this.state.todo.map(task => tasksToDo.push(task));
+    tasksToDo.push({taskId: Date.now(), taskContent: 'test'});
+    this.setState({todo: tasksToDo});
   }
 
   onDragStart = () => {
@@ -83,18 +75,37 @@ class Sprint extends Component {
   };
 
   onDragEnd = (result) => {
-    const prevToDo = this.state.tasks.todo;
-    const prevOnGo = this.state.tasks.ongo;
-    const prevDone = this.state.tasks.done;
+    const src = result.source.droppableId,
+          dst = result.destination.droppableId;
+    const srcTasks = this.state[src],
+          dstTasks = this.state[dst];
+    let newSrcTasks = srcTasks.filter(task => task.taskId !== result.draggableId),
+        newDstTasks;
+
+    if(result.source.droppableId === result.destination.droppableId) {
+      newDstTasks = newSrcTasks;
+      newDstTasks.splice(result.destination.index, 0, srcTasks.find(task => task.taskId === result.draggableId));
+    }
+    else {
+      newDstTasks = dstTasks;
+      newDstTasks.splice(result.destination.index, 0, srcTasks.find(task => task.taskId === result.draggableId));
+    }
+
+    this.setState({
+      [src]: newSrcTasks,
+      [dst]: newDstTasks
+    })
+
+    console.log(this.state);
+
+    /*
 
     switch(result.source.droppableId) {
       case 'col1':
         let currToDo = prevToDo.filter(task => task.taskId !== result.draggableId);
-        this.setState({todo: currToDo});
 
         switch(result.destination.droppableId) {
           case 'col1':
-            currToDo = prevToDo;
             currToDo.splice(result.destination.index, 0, prevToDo.find(task => task.taskId === result.draggableId));
             this.setState({todo: currToDo});
             break;
@@ -108,6 +119,7 @@ class Sprint extends Component {
         break;
       default: return;
     }
+    */
 
     console.log(result);
   };
@@ -128,21 +140,21 @@ class Sprint extends Component {
           onDragEnd={this.onDragEnd}
         >
           <SprintColumn
-            droppableId="col1"
+            droppableId="todo"
             columnName="Do zrobienia"
             addTaskBtn="true"
             addTask={this.addTaskHandler}
-            tasks={this.state.tasks.todo}
+            tasks={this.state.todo}
           />
           <SprintColumn
-            droppableId="col2"
+            droppableId="ongo"
             columnName="W toku"
-            tasks={this.state.tasks.ongo}
+            tasks={this.state.ongo}
           />
           <SprintColumn
-            droppableId="col3"
+            droppableId="done"
             columnName="Gotowe"
-            tasks={this.state.tasks.done}
+            tasks={this.state.done}
           />
         </SprintBoard>
 

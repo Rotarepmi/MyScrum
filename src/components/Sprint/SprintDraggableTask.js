@@ -13,11 +13,9 @@ const SprintDraggableTask = (props) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <input
-              className="Sprint-draggable-input"
-              type="text"
-              defaultValue={props.taskContent}
-            />
+            <div className="Sprint-draggable-input">
+              {props.taskContent}
+            </div>
           </div>
         </div>
       )}
