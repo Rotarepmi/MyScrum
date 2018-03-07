@@ -78,26 +78,28 @@ class Sprint extends Component {
 
   // mandatory function, change place of task
   onDragEnd = (result) => {
-    const src = result.source.droppableId,
-          dst = result.destination.droppableId;
-    const srcTasks = this.state[src],
-          dstTasks = this.state[dst];
-    let newSrcTasks = srcTasks.filter(task => task.taskId !== result.draggableId),
-        newDstTasks;
+    if(result.destination !== null) {
+      const src = result.source.droppableId,
+            dst = result.destination.droppableId;
+      const srcTasks = this.state[src],
+            dstTasks = this.state[dst];
+      let newSrcTasks = srcTasks.filter(task => task.taskId !== result.draggableId),
+          newDstTasks;
 
-    if(result.source.droppableId === result.destination.droppableId) {
-      newDstTasks = newSrcTasks;
-      newDstTasks.splice(result.destination.index, 0, srcTasks.find(task => task.taskId === result.draggableId));
-    }
-    else {
-      newDstTasks = dstTasks;
-      newDstTasks.splice(result.destination.index, 0, srcTasks.find(task => task.taskId === result.draggableId));
-    }
+      if(result.source.droppableId === result.destination.droppableId) {
+        newDstTasks = newSrcTasks;
+        newDstTasks.splice(result.destination.index, 0, srcTasks.find(task => task.taskId === result.draggableId));
+      }
+      else {
+        newDstTasks = dstTasks;
+        newDstTasks.splice(result.destination.index, 0, srcTasks.find(task => task.taskId === result.draggableId));
+      }
 
-    this.setState({
-      [src]: newSrcTasks,
-      [dst]: newDstTasks
-    });
+      this.setState({
+        [src]: newSrcTasks,
+        [dst]: newDstTasks
+      });
+    }
   };
 
   render() {
